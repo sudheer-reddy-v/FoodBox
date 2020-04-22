@@ -9,7 +9,7 @@ public class MenuDetailsPOJO {
 	
 	@Id
 	public int menuId;
-	public String vendorId;
+//	public String vendorId;
 	public String menuName;
 	public String menuDesc;
 	public double price;
@@ -25,12 +25,7 @@ public class MenuDetailsPOJO {
 	public void setMenuId(int menuId) {
 		this.menuId = menuId;
 	}
-	public String getVendorId() {
-		return vendorId;
-	}
-	public void setVendorId(String vendorId) {
-		this.vendorId = vendorId;
-	}
+	
 	public String getMenuName() {
 		return menuName;
 	}

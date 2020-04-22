@@ -1,3 +1,3 @@
-venid,iname,itype,price
-1,egg,veg,23
-1,sambar,veg,14
+venid,menuName,menuDesc,price,menuCategory
+1,Biryani,Soft Cooked,180,NON VEG
+1,Idly,SOFT IDLY WITH PEANUT CHUTNEY,45,VEG
