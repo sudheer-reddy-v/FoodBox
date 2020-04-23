@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.RestController;
 import com.sudheer.foodbox.entity.LoginPOJO;
 import com.sudheer.foodbox.entity.LoginStatusPOJO;
 import com.sudheer.foodbox.entity.RegistrationPOJO;
-import com.sudheer.foodbox.entity.RegistrationStatusPOJO;
 import com.sudheer.foodbox.model.LoginModel;
 import com.sudheer.foodbox.model.LoginStatusModel;
 import com.sudheer.foodbox.model.RegistrationModel;
-import com.sudheer.foodbox.model.RegistrationStatusModel;
+import com.sudheer.foodbox.model.StatusModel;
 import com.sudheer.foodbox.service.RegServiceImpl;
 
 @RestController
@@ -23,15 +22,12 @@ public class FoodRegController {
 	private  RegServiceImpl service;
 	
 	@RequestMapping(value="/reqReg",method = RequestMethod.POST,consumes = "application/json")
-	public RegistrationStatusModel requestRegistration(@RequestBody RegistrationModel dto)
+	public StatusModel requestRegistration(@RequestBody RegistrationModel dto)
 	{
 		RegistrationPOJO dao= new RegistrationPOJO();
 		BeanUtils.copyProperties(dto, dao);
-		RegistrationStatusPOJO resdao=service.doRegService(dao);
-		RegistrationStatusModel resdto= new RegistrationStatusModel();
-		BeanUtils.copyProperties(resdao, resdto);
-		
-		return resdto;
+		StatusModel resdao=service.doRegService(dao);
+		return resdao;
 		
 	}
 	@RequestMapping(value="/dologin",method = RequestMethod.POST,consumes = "application/json")

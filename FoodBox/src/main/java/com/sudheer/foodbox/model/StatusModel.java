@@ -1,6 +1,7 @@
 package com.sudheer.foodbox.model;
 
-public class RegistrationStatusModel {
+public class StatusModel {
+
 	private int errorcode;
 	private String errorMsg;
 	public int getErrorcode() {
@@ -15,5 +16,4 @@ public class RegistrationStatusModel {
 	public void setErrorMsg(String errorMsg) {
 		this.errorMsg = errorMsg;
 	}
-
 }

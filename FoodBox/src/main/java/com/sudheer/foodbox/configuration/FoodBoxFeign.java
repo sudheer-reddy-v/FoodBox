@@ -6,11 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.sudheer.foodbox.model.PaymentModel;
-import com.sudheer.foodbox.model.PaymentStatusModel;
+import com.sudheer.foodbox.model.StatusModel;
 
-@FeignClient("EUREKA-FOOD-BOX")
+@FeignClient(name="EUREKA-FOOD-BOX")
 public interface FoodBoxFeign {
 	@RequestMapping(value = "/payment",method =RequestMethod.POST,consumes = "application/json")
-	PaymentStatusModel doPayment(@RequestBody  PaymentModel dto);
+	StatusModel doPayment(@RequestBody  PaymentModel dto);
+	
 
 }

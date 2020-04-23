@@ -3,9 +3,9 @@ package com.sudheer.securebank.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sudheer.securebank.entity.AccountRegistrationEntity;
-import com.sudheer.securebank.entity.AccountRegistrationStatusEntity;
 import com.sudheer.securebank.entity.AccountEntity;
+import com.sudheer.securebank.entity.AccountRegistrationEntity;
+import com.sudheer.securebank.model.StatusPOJO;
 import com.sudheer.securebank.repository.AccountRepository;
 @Service
 public class RegistrationServiceImpl implements Registrationservice{
@@ -15,14 +15,14 @@ public class RegistrationServiceImpl implements Registrationservice{
 	private RandomCardDetailsService rser;
 
 	@Override
-	public AccountRegistrationStatusEntity doRegistration(AccountRegistrationEntity dao) {
-		AccountRegistrationStatusEntity resdao= new AccountRegistrationStatusEntity();
+	public StatusPOJO doRegistration(AccountRegistrationEntity dao) {
+		StatusPOJO resdao= new StatusPOJO();
 		String adao=arepo.checkAccount(dao.getPhono());
 		if(!"".equals(adao) && adao!=null)
 		
 		{
-			resdao.setSmsg("account alredyExisit");
-			resdao.setStatusCode(701);
+			resdao.setErrormsg("Account alredy exisit");
+			resdao.setErrCode(701);
 			return resdao;
 		}
 		else
@@ -35,8 +35,8 @@ public class RegistrationServiceImpl implements Registrationservice{
 			dao1.setBal(10000);
 			dao1.setName(dao.getUname());
 			arepo.save(dao1);
-			resdao.setStatusCode(200);
-			resdao.setSmsg("account successfully created");
+			resdao.setErrCode(200);
+			resdao.setErrormsg("Acoount generated,details will be sent shortly");
 			return resdao;
 		}
 		

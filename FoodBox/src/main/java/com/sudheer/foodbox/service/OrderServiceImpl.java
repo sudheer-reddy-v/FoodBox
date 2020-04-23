@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.sudheer.foodbox.entity.MenuDetailsPOJO;
 import com.sudheer.foodbox.entity.OrderPOJO;
-import com.sudheer.foodbox.entity.OrderStatusPOJO;
+import com.sudheer.foodbox.model.StatusModel;
 import com.sudheer.foodbox.repo.MenuRepository;
 
 @Service
@@ -18,8 +18,8 @@ public class OrderServiceImpl implements OrderService {
 	private OrderInfoSerImpl oinfo;
 
 	@Override
-	public OrderStatusPOJO processOrderService(OrderPOJO dao) {
-		OrderStatusPOJO resdao= new OrderStatusPOJO();
+	public StatusModel processOrderService(OrderPOJO dao) {
+		StatusModel resdao= new StatusModel();
 	boolean b=	menu.existsById(dao.getItemid());
 	if(b)
 	{
@@ -30,15 +30,15 @@ public class OrderServiceImpl implements OrderService {
 	MenuDetailsPOJO dao2=opt.get();
 	oinfo.saveOrderInfo(dao2,phone);
 	
-		resdao.setScode(200);
-		resdao.setSmsg("pay"+l+" to place the order ");
+		resdao.setErrorcode(200);
+		resdao.setErrorMsg("Make a payment of "+l+" to place the order ");
 		
 		return resdao;
 	}
 	else
 	{
-		resdao.setScode(603);
-		resdao.setSmsg("item not found please try again");
+		resdao.setErrorcode(603);
+		resdao.setErrorMsg("Item is out of stock,please try again later");
 		return resdao;
 	}
 	

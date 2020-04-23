@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.sudheer.foodbox.configuration.FoodBoxFeign;
 import com.sudheer.foodbox.model.PaymentModel;
-import com.sudheer.foodbox.model.PaymentStatusModel;
+import com.sudheer.foodbox.model.StatusModel;
 
 
 @RestController
@@ -16,12 +16,15 @@ public class FoodPaymentController {
 	@Autowired
 	private  FoodBoxFeign fFign;
 	@RequestMapping(value = "/pay",method =RequestMethod.POST,consumes = "application/json")
-	PaymentStatusModel doPayment(@RequestBody  PaymentModel model)
+	StatusModel doPayment(@RequestBody  PaymentModel model)
 	{
-		PaymentStatusModel resdto= fFign.doPayment(model);
-		if(resdto.getPcode()==200)
+		StatusModel resdto= fFign.doPayment(model);
+		if(resdto.getErrorcode()==200)
 		{
 			
+		}else {
+			resdto.setErrorcode(12);
+			resdto.setErrorMsg("Payment failed please try again");
 		}
 		return resdto;
 

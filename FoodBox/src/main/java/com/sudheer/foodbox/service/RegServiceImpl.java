@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import com.sudheer.foodbox.entity.LoginPOJO;
 import com.sudheer.foodbox.entity.LoginStatusPOJO;
 import com.sudheer.foodbox.entity.RegistrationPOJO;
-import com.sudheer.foodbox.entity.RegistrationStatusPOJO;
 import com.sudheer.foodbox.entity.VendorDetailsPOJO;
+import com.sudheer.foodbox.model.StatusModel;
 import com.sudheer.foodbox.repo.Regrepo;
 import com.sudheer.foodbox.repo.VendorRepo;
 
@@ -20,23 +20,23 @@ public class RegServiceImpl implements RegService {
 	@Autowired
 	private VendorRepo vrepo;
 
-	RegistrationStatusPOJO resdao = new RegistrationStatusPOJO();
 	LoginStatusPOJO lresdao= new LoginStatusPOJO();
 	
 	@Override
-	public RegistrationStatusPOJO doRegService(RegistrationPOJO dao) {
+	public StatusModel doRegService(RegistrationPOJO dao) {
+		StatusModel resdao=new StatusModel();
 	boolean b=regrepo.existsById(dao.getPhno());
 	if(b)
 	{
 		resdao.setErrorcode(601);
-		resdao.setErrormsg("user aredy exist");
+		resdao.setErrorMsg("user aredy exist");
 		return resdao;
 	}
 	else
 	{
 		regrepo.save(dao);
 		resdao.setErrorcode(200);
-		resdao.setErrormsg("successfully registered");
+		resdao.setErrorMsg("successfully registered");
 		return resdao;	
 	}
 	
@@ -55,8 +55,8 @@ public class RegServiceImpl implements RegService {
 		}
 		else
 		{
-			resdao.setErrorcode(602);
-			resdao.setErrormsg("bad cridentials");
+			lresdao.setErrorcode(602);
+			lresdao.setErrormsg("bad cridentials");
 			return lresdao;
 		}
 		

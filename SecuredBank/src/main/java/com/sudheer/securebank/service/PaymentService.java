@@ -1,10 +1,10 @@
 package com.sudheer.securebank.service;
 
 import com.sudheer.securebank.entity.PaymentEntity;
-import com.sudheer.securebank.entity.PaymentStatusEntity;
+import com.sudheer.securebank.model.StatusPOJO;
 
 public interface PaymentService {
-	PaymentStatusEntity doPaymentSer(PaymentEntity dao);
+	StatusPOJO doPaymentSer(PaymentEntity dao);
 	
 
 }

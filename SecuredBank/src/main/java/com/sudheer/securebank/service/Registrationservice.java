@@ -1,10 +1,9 @@
 package com.sudheer.securebank.service;
 
 import com.sudheer.securebank.entity.AccountRegistrationEntity;
-import com.sudheer.securebank.entity.AccountRegistrationStatusEntity;
-import com.sudheer.securebank.model.AccountRegStatusPOJO;
+import com.sudheer.securebank.model.StatusPOJO;
 
 public interface Registrationservice {
-	public AccountRegistrationStatusEntity doRegistration(AccountRegistrationEntity dao);
+	public StatusPOJO doRegistration(AccountRegistrationEntity dao);
 
 }
